@@ -77,8 +77,10 @@ class _BackdropTitle extends AnimatedWidget {
     required this.onPress,
     required this.frontTitle,
     required this.backTitle,
+
   }) : _listenable = listenable,
         super(key: key, listenable: listenable);
+
 
   final Animation<double> _listenable;
 
@@ -96,7 +98,7 @@ class _BackdropTitle extends AnimatedWidget {
           width: 72.0,
           child: IconButton(
             padding: const EdgeInsets.only(right: 8.0),
-            onPressed: this.onPress,
+            onPressed: onPress,
             icon: Stack(children: <Widget>[
               Opacity(
                 opacity: animation.value,
