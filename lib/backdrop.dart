@@ -31,10 +31,11 @@ class _FrontLayer extends StatelessWidget {
   // TODO: Add on-tap callback (104)
   const _FrontLayer({
     Key? key,
-    required this.child,
+    required this.child, this.onTap,
   }) : super(key: key);
-
+  final VoidCallback? onTap; // New code
   final Widget child;
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,14 @@ class _FrontLayer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // TODO: Add a GestureDetector (104)
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: onTap,
+            child: Container(
+              height: 40.0,
+              alignment: AlignmentDirectional.centerStart,
+            ),
+          ),
           Expanded(
             child: child,
           ),
@@ -131,7 +140,11 @@ class _BackdropState extends State<Backdrop>
           rect: layerAnimation,
           child: _FrontLayer(
             // TODO: Implement onTap property on _BackdropState (104)
-            child: widget.frontLayer,
+              child: _FrontLayer(
+                // TODO: Implement onTap property on _BackdropState (104)
+                onTap: _toggleBackdropLayerVisibility,
+                child: widget.frontLayer,
+              ),
           ),
         ),
       ],
