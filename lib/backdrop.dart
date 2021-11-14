@@ -5,6 +5,7 @@ import 'model/product.dart';
 
 
 // TODO: Add velocity constant (104)
+const double _kFlingVelocity = 2.0;
 
 class Backdrop extends StatefulWidget {
   final Category currentCategory;
