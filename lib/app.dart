@@ -21,9 +21,23 @@ import 'model/product.dart'; // New code
 import 'supplemental/cut_corners_border.dart';
 
 // TODO: Convert ShrineApp to stateful widget (104)
-class ShrineApp extends StatelessWidget {
+
+class ShrineApp extends StatefulWidget {
   const ShrineApp({Key? key}) : super(key: key);
 
+  @override
+  State<ShrineApp> createState() => _ShrineAppState();
+}
+
+
+class _ShrineAppState extends State<ShrineApp> {
+  Category _currentCategory = Category.all;
+
+  void _onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
