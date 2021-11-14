@@ -84,6 +84,16 @@ class _BackdropState extends State<Backdrop>
   }
 
   // TODO: Add functions to get and change front layer visibility (104)
+  bool get _frontLayerVisible {
+    final AnimationStatus status = _controller.status;
+    return status == AnimationStatus.completed ||
+        status == AnimationStatus.forward;
+  }
+
+  void _toggleBackdropLayerVisibility() {
+    _controller.fling(
+        velocity: _frontLayerVisible ? -_kFlingVelocity : _kFlingVelocity);
+  }
 
   // TODO: Add BuildContext and BoxConstraints parameters to _buildStack (104)
   Widget _buildStack() {
