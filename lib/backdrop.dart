@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
+import 'login.dart';
 import 'model/product.dart';
 
 
@@ -65,6 +65,7 @@ class _FrontLayer extends StatelessWidget {
   }
 }
 // TODO: Add _BackdropTitle class (104)
+
 // TODO: Add _BackdropTitle class (104)
 class _BackdropTitle extends AnimatedWidget {
   final void Function() onPress;
@@ -149,7 +150,6 @@ class _BackdropTitle extends AnimatedWidget {
     );
   }
 }
-// TODO: Add _BackdropState class (104)
 // TODO: Add _BackdropState class (104)
 class _BackdropState extends State<Backdrop>
     with SingleTickerProviderStateMixin {
@@ -240,15 +240,12 @@ class _BackdropState extends State<Backdrop>
       brightness: Brightness.light,
       elevation: 0.0,
       titleSpacing: 0.0,
-      // TODO: Replace leading menu icon with IconButton (104)
-      leading: IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: _toggleBackdropLayerVisibility,
+      title: _BackdropTitle(
+        listenable: _controller.view,
+        onPress: _toggleBackdropLayerVisibility,
+        frontTitle: widget.frontTitle,
+        backTitle: widget.backTitle,
       ),
-      // TODO: Remove leading property (104)
-      // TODO: Create title with _BackdropTitle parameter (104)
-
-      title: const Text('SHRINE'),
       actions: <Widget>[
         // TODO: Add shortcut to login screen from trailing icons (104)
         IconButton(
@@ -258,24 +255,35 @@ class _BackdropState extends State<Backdrop>
           ),
           onPressed: () {
             // TODO: Add open login (104)
-          },
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (BuildContext context) => const LoginPage()),
+    );
+    },
         ),
         IconButton(
           icon: const Icon(
             Icons.tune,
-            semanticLabel: 'filter',
+            semanticLabel: 'login',
           ),
           onPressed: () {
             // TODO: Add open login (104)
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const LoginPage()),
+
+              );
           },
         ),
       ],
-      backwardsCompatibility: false,
     );
     return Scaffold(
       appBar: appBar,
-      // TODO: Return a LayoutBuilder widget (104)
-      body: LayoutBuilder(builder: _buildStack),
+      body: LayoutBuilder(
+        builder: _buildStack,
+      ),
     );
   }
 }
